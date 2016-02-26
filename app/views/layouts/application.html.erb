@@ -7,14 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Home", root_path %>
-<%= link_to "About Us", root_path %>
-<%= link_to "Contact", root_path %>
-<%= link_to "Features", root_path %>
-<%= link_to "FAQs", root_path %>
-<%= link_to "Login", root_path %>
 
-<%= yield %>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <%= render "partials/navigation" %>  
+  
+  <main class="mdl-layout__content">
+    <div class="page-content">
+    
+      <%= yield %>
+    
+    </div>
+  </main>
+</div>
 
 </body>
 </html>
