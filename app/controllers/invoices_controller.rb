@@ -4,9 +4,9 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-        @start_date = parsed_date(params[:start_date], 7.days.ago.to_date.to_s)
-        @end_date = parsed_date(params[:end_date], Date.today.to_s)
-        @invoices = Invoice.where("date between (?) and (?)", @start_date - 1.day, @end_date + 1.day)
+        @start_date = parsed_date(params[:start_date], 7.days.ago.to_date)
+        @end_date = parsed_date(params[:end_date], Date.today)
+        @invoices = Invoice.where("date between (?) and (?)", @start_date, @end_date + 1.day)
   end
 
   # GET /invoices/1
