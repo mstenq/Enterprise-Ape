@@ -4,7 +4,9 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+        @start_date = parsed_date(params[:start_date], 7.days.ago.to_date.to_s)
+        @end_date = parsed_date(params[:end_date], Date.today.to_s)
+        @invoices = Invoice.where("date between (?) and (?)", @start_date - 1.day, @end_date + 1.day)
   end
 
   # GET /invoices/1
@@ -70,5 +72,11 @@ class InvoicesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
       params.require(:invoice).permit(:date, :company, :tax, :sales_person)
+    end
+    
+    def parsed_date(date_string, default)
+       Date.parse(date_string)
+       rescue ArgumentError, TypeError
+            default
     end
 end

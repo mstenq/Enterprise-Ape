@@ -1,28 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Invoices</h1>
 
-<table>
+
+
+<div class="range-query">
+
+  <%= form_tag invoices_path, method: :get do %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= date_field_tag 'start_date', @start_date, class:"mdl-textfield__input" %>
+      <%= label_tag 'start_date', 'From', class:"mdl-textfield__label" %>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= date_field_tag 'end_date', @end_date, class:"mdl-textfield__input" %>
+      <%= label_tag 'end_date', 'To', class:"mdl-textfield__label" %>
+    </div>
+    <%= submit_tag 'Search', class:"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" %>
+  <% end %>
+  
+</div>
+
+
+<h2>Invoices</h2>
+
+<table  class="">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Company</th>
-      <th>Tax</th>
-      <th>Sales person</th>
-      <th colspan="3"></th>
+      <th align="left">Date</th>
+      <th align="left">Company</th>
+      <th align="left">Tax</th>
+      <th align="left">Sales person</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= invoice.date %></td>
+        <td><%= invoice.date.strftime("%-m/%-d/%Y") %></td>
         <td><%= invoice.company %></td>
-        <td><%= invoice.tax %></td>
+        <td><%= invoice.tax %>%</td>
         <td><%= invoice.sales_person %></td>
-        <td><%= link_to 'Show', invoice %></td>
-        <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-        <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Show', invoice %>
+          <%= link_to 'Edit', edit_invoice_path(invoice) %>
+          <%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Invoice', new_invoice_path %>
+<%= link_to 'New Invoice', new_invoice_path, class:"mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
