@@ -14,81 +14,30 @@
  *= require_self
  */
  
- $layout-header-bg-color: #22B6E2 !default;
- @import 'material';
+
+@import "semantic-ui";
+
+html,
+body {
+  height: 100%;
+}
+html {
+  font-size: 14px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  min-width: 320px;
+  background: #ffffff;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  font-smoothing: antialiased;
+}
+
+  .main.container {
+    margin-top: 7em;
+  }
  
-body{
-     background: #F4F4F4;
-}
-
-.demo-content {
-    border-radius: 2px;
-    padding: 5em 3em;
-    margin-bottom: 80px;
-}
-
-.demo-ribbon {
-    width: 100%;
-    height: 40vh;
-    background-color: #0F8DB3;
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-}
-
-.demo-main {
-    margin-top: -35vh;
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-}
-
-table{
-    width: 100%;
-}
-
-@media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	
-	tr { border: 1px solid #ccc; margin-bottom: 20px; padding: 5px 5px 12px 5px; border-radius: 3px; }
-	
-	td { 
-		/* Behave  like a "row" */
-		border: none;
-		position: relative;
-		padding-left: 50%; 
-	}
-	
-	td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	
-	/*
-	Label the data
-	*/
-	td:nth-of-type(1):before { content: "Date"; }
-	td:nth-of-type(2):before { content: "Company"; }
-	td:nth-of-type(3):before { content: "Tax"; }
-	td:nth-of-type(4):before { content: "Sales Person"; }
-	td:nth-of-type(5):before { content: "Actions"; }
-
-}

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'material_design_lite-sass'
+gem 'semantic-ui-sass'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
