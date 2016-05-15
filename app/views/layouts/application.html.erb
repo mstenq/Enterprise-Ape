@@ -14,12 +14,34 @@
   <%= render "partials/navigation" %>  
   
   <div class="ui main container">
-      
+  
+  <% if flash[:notice] %>
+    <div class="ui inline cookie nag" style="background: #0A70A6" >
+      <span class="title">
+        <%= notice %>
+      </span>
+      <i class="close icon"></i>
+    </div>
+  <% end %>
+  
+  <% if flash[:alert] %>
+    <div class="ui inline cookie nag" style="background: #D5C116" >
+      <span class="title">
+        <%= alert %>
+      </span>
+      <i class="close icon"></i>
+    </div>
+  <% end %> 
+          
     <%= yield %>
           
   </div>
 
-
+<script>
+$('.cookie.nag')
+  .nag('show')
+;
+</script>
 
 </body>
 </html>
