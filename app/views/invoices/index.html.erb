@@ -4,8 +4,24 @@
 
 
 <div class="ui form" style="margin-bottom: 20px; float:right;">
-    <%= form_tag invoices_path, method: :get do %>
+    <%= form_tag invoices_path, method: :get , :id => "date-range-form" do %>
       <div class="fields">
+        <div class="field">
+          <label for="date-range-name">Date Range</label>
+          <select id="date-range-select" name="date_range_name" class="ui dropdown">
+            <option value="<%=@date_range_name %>"><%=@date_range_name %></option>
+            <option value="Today">Today</option>
+            <option value="Yesterday">Yesterday</option>
+            <option value="This Week">This Week</option>
+            <option value="Last Week">Last Week</option>
+            <option value="This Month">This Month</option>
+            <option value="Last Month">Last Month</option>
+            <option value="Last 7 Days">Last 7 Days</option>
+            <option value="Last 30 Days">Last 30 Days</option>
+            <option value="Last 60 Days">Last 60 Days</option>
+            <option value="Last 90 Days">Last 90 Days</option>
+          </select>
+        </div>
         <div class="field">
           <%= label_tag 'start_date', 'From', class:"" %>
           <%= date_field_tag 'start_date', @start_date, class:"" %>        
@@ -61,4 +77,52 @@
 
 <script>
   $('table').tablesort();
+  $('.ui.dropdown').dropdown();
+  
+  $( "#date-range-select" ).change(function() {
+    var startDate;
+    var endDate;
+    var rangeSelect =  $( "#date-range-select" ).val();
+    if( rangeSelect == 'Today' ){
+      startDate = moment();
+      endDate = moment();
+    }else if( rangeSelect == 'Yesterday'){
+      startDate = moment().subtract(1, 'days');
+      endDate = moment().subtract(1, 'days');
+    }else if ( rangeSelect == 'This Week' ){
+      startDate = moment().startOf('week');
+      endDate = moment().endOf('week');
+    }else if ( rangeSelect == 'Last Week' ){
+      startDate = moment().startOf('week').subtract(1, 'weeks');
+      endDate = moment().endOf('week').subtract(1, 'weeks');
+    }else if ( rangeSelect == 'This Month' ){
+      startDate = moment().startOf('month');
+      endDate = moment().endOf('month');
+    }else if ( rangeSelect == 'Last Month' ){
+      startDate = moment().startOf('month').subtract(1, 'month');
+      endDate = moment().endOf('month').subtract(1, 'month');
+    }else if( rangeSelect == 'Last 7 Days'){
+      startDate = moment().subtract(7, 'days');
+      endDate = moment();
+    }else if( rangeSelect == 'Last 30 Days'){
+      startDate = moment().subtract(30, 'days');
+      endDate = moment();
+    }else if( rangeSelect == 'Last 60 Days'){
+      startDate = moment().subtract(60, 'days');
+      endDate = moment();
+    }else if( rangeSelect == 'Last 90 Days'){
+      startDate = moment().subtract(90, 'days');
+      endDate = moment();
+    }else{
+      alert("This is not programmed into the system. If you think this is in error please contact your developer.");
+    }
+    
+    
+    startDate = startDate.format('YYYY-MM-DD');
+    endDate = endDate.format('YYYY-MM-DD');
+    $( "#start_date" ).val(startDate);
+    $( "#end_date" ).val(endDate);
+    $( "#date-range-form" ).submit();
+    
+  });
 </script>

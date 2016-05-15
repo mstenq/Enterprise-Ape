@@ -1,0 +1,46 @@
+<%= link_to 'New Company', new_company_path, class:"ui blue button right floated" %>
+
+<h1>Listing Companies</h1>
+
+<table  class="ui basic sortable table">
+  <thead>
+    <tr>
+      <th class="sorted ascending">Name</th>
+      <th>Manager</th>
+      <th>Status</th>
+      <th class="number">Terms</th>
+      <th class="no-sort"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.manager %></td>
+        <td><%= company.status %></td>
+        <td><%= company.terms %></td>
+        <td>
+          <%= link_to 'Show', company %>
+          <%= link_to 'Edit', edit_company_path(company) %>
+          <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h3>Import Companies</h3>
+<%= form_tag import_companies_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload", class:"ui blue button" %>
+<% end %>
+
+
+
+
+<script>
+  $('table').tablesort();
+</script>

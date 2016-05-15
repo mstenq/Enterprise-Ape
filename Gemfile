@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'semantic-ui-sass'
 gem 'devise'
+gem 'momentjs-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
