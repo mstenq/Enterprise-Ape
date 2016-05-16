@@ -1,4 +1,4 @@
-<%= form_for(@invoice) do |f| %>
+<%= form_for(@invoice, :html => { :class => "ui form"}) do |f| %>
   <% if @invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
@@ -10,24 +10,29 @@
       </ul>
     </div>
   <% end %>
+  
+<h4 class="ui dividing header">Invoice Information</h4>
+  <div class="fields">
+    <div class="four wide field">
+      <%= f.label :date %><br>
+      <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %>
+    </div>
+    <div class="twelve wide field">
+      <%= f.label :company %><br>
+      <%= f.text_field :company %>
+    </div>
+  </div>
+  <div class="fields">
+    <div class="two wide field">
+      <%= f.label :tax %><br>
+      <%= f.text_field :tax %>
+    </div>
+    <div class="fourteen wide field">
+      <%= f.label :sales_person %><br>
+      <%= f.text_field :sales_person %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
-  </div>
-  <div class="field">
-    <%= f.label :tax %><br>
-    <%= f.text_field :tax %>
-  </div>
-  <div class="field">
-    <%= f.label :sales_person %><br>
-    <%= f.text_field :sales_person %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Save", class:"ui blue button" %>
+  
 <% end %>
