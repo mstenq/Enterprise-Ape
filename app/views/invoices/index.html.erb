@@ -49,6 +49,7 @@
       <th>Company</th>
       <th class="number">Tax</th>
       <th>Sales person</th>
+      <th>Paid</th>
       <th class="no-sort"></th>
     </tr>
   </thead>
@@ -60,6 +61,7 @@
         <td><%= invoice.company %></td>
         <td><%= invoice.tax %>%</td>
         <td><%= invoice.sales_person %></td>
+        <td><%= invoice.is_paid?  ? 'Yes' : 'No' %></td>
         <td>
           <%= link_to 'Show', invoice %>
           <%= link_to 'Edit', edit_invoice_path(invoice) %>
