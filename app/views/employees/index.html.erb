@@ -1,0 +1,38 @@
+<%= link_to 'New Employee', new_employee_path, class:"ui blue button right floated" %>
+
+<h1>Employees</h1>
+
+<table  class="ui basic sortable table">
+  <thead>
+    <tr>
+      <th class="sorted ascending">Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Job type</th>
+      <th class="no-sort"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.phone %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.job_type %></td>
+        <td>
+          <%= link_to 'Show', employee %>
+          <%= link_to 'Edit', edit_employee_path(employee) %>
+          <%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<script>
+  $('table').tablesort();
+</script>

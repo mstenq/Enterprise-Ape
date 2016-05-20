@@ -8,17 +8,33 @@
       <%= link_to "Features" , welcome_features_path, class:"item" %>
       <%= link_to "FAQs" , welcome_faq_path, class:"item" %>
       <%= link_to "Pricing" , welcome_pricing_path, class:"item" %>
-      <%= link_to "Invoices" , invoices_path, class:"item" %>
       
+      
+    
+      <div class="right menu">
       <% if current_user %>
-        <%= link_to "Logout" , destroy_user_session_path, method: :delete, class:"item" %> 
+      <div class="ui dropdown item">
+        Admin <i class="dropdown icon"></i>
+        <div class="menu">
+          <%= link_to "Invoices" , invoices_path, class:"item" %>
+          <%= link_to "Employees" , employees_path, class:"item" %>
+          <%= link_to "Companies" , companies_path, class:"item" %>
+          <%= link_to "Logout" , destroy_user_session_path, method: :delete, class:"item" %> 
+        </div>
+      </div>
       <% else %>
         <%= link_to "Sign Up" , new_user_registration_path, class:"item" %>
         <%= link_to "Login" , new_user_session_path, class:"item" %> 
       <% end %>
-
-    </div>
+      
+      </div>
+    
+    
   </div>
+    
+  </div>
+  
+  
 
 
 

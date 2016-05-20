@@ -15,7 +15,8 @@
   <div class="fields">
     <div class="four wide field">
       <%= f.label :date %><br>
-      <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %>
+      <%= f.date_field :date, :value => Date.today %> 
+      <!--, :value => Time.now.strftime('%Y-%m-%d')-->
     </div>
     <div class="twelve wide field">
       <%= f.label :company %><br>
@@ -28,8 +29,8 @@
       <%= f.text_field :tax %>
     </div>
     <div class="fourteen wide field">
-      <%= f.label :sales_person %><br>
-      <%= f.text_field :sales_person %>
+      <%= f.label :sales_person %><br>     
+      <%= f.collection_select :employee_id, Employee.all, :id, :name, {:include_blank => true}, { multiple: false }  %>
     </div>
   </div>
   <div class="fields">
